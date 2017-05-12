@@ -64,7 +64,7 @@
           clear:both;
           border-radius:12px;
         }
-        #prnt{
+        #submit{
 
           margin-left:1020px;
           border-radius:12px;
@@ -116,9 +116,9 @@
   <div  class ="nav">
     <h1 style="text-align:center; color:white"> INVOICE SYSTEM<h1></div>
   <div class ="yarikul">
-    <h2>Yarikul Invoice System</h2>
-    <p>Address:Rajbagh Near Huriyat office <br><br> Mobile:9596469850<br><br>Pin:190024 </p>
-    <p>Email: info@yarikul.com</p>
+    <h2>E-Resolute Invoice System</h2>
+    <p>Address:Indo Kashmir Carpet factory <br><br> Mobile:7006921375<br><br>Pin:190002 </p>
+    <p>Email: sajid@eresolute.com</p>
   </div>
 
   <div class ="top">
@@ -139,15 +139,14 @@
     </tr>
     <tr>
       <td>
+        <input type="text" id="items" >
 
-
-        </select>
       </td>
       <td>
-        <input type="text" id="unitprice" disabled >
+        <input type="text" id="unitprice" >
       </td>
       <td>
-        <input type="text"  class="qty">
+        <input type="text"  id="qty">
       </td>
       <td>
         <input type="text" id="total">
@@ -166,7 +165,7 @@
 
   </table>
   <div>
-    <input id="prnt" type="button" onClick="window.print()" value="print!"/>
+    <input id="submit" type="button" value="Submit"/>
   </div>
   <div  class ="foot">
     <h4 style="text-align:center; color:white">Developed By Sajid Khaki</h4>
@@ -174,3 +173,29 @@
   </div>
   </body>
 </html>
+
+<script>
+
+    var socket=io.conect()
+    $(document).ready(function () {
+     $("#submit").click(function(){
+         var details={
+             customername:$("#user").val(),
+             contact:$("#num").val(),             ///table fields
+             address:$("#add").val(),
+             quantity:$("#qty").val(),
+             price:$("#unitprice").val(),
+             grandtotal:$("#grandtotal").val()
+
+           }
+         socket.emit("senDetails",details);
+         })
+
+  });
+
+
+
+
+
+
+</script>
