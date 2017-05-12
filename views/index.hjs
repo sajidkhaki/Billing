@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>{{ title }}</title>
+    <meta charset="utf-8">
+    <title>{{ INVOICE SYSTEM}}</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-  <meta charset="utf-8">
-  <title>Invoice</title>
   <script src="/socket.io/socket.io.js"></script>
   <script src="javascripts/pdfFromHTML.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -12,211 +11,166 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/styles/metro/notify-metro.css">
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/styles/metro/notify-metro.js"></script>
-  <style>
-    .invoice-box{
-      max-width:800px;
-      margin:auto;
-      padding:30px;
-      border:1px solid #eee;
-      box-shadow:0 0 10px rgba(0, 0, 0, .15);
-      font-size:16px;
-      line-height:24px;
-      font-family:'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
-      color:#555;
-    }
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+      <style>
+        table, th, td {
+          border: 1px solid black;
+        }
 
-    .invoice-box table{
-      width:100%;
-      line-height:inherit;
-      text-align:left;
-    }
+        .mytable
+        {
+          border:1px solid black;
+          width:815px;
+          background-color: #dddddd;
+          cellpadding:5px;
+          cellpadding:5px;
+          margin-left:200px;
 
-    .invoice-box table td{
-      padding:5px;
-      vertical-align:top;
-    }
+        }
+        .yarikul{
+          width:350px;
+          height:160px;
+          float:left;
+          margin-top:5px;
+          padding:10px;
+          margin-top:30px;
+          margin-left:250px;
+          color:black;
 
-    .invoice-box table tr td:nth-child(2){
-      text-align:right;
-    }
+        }
+        .top{
+          width:815px;
+          border:1px solid black;
+          float:center;
+          margin-top:290px;
+          margin-left:200px;
+          height:50px;
 
-    .invoice-box table tr.top table td{
-      padding-bottom:20px;
-    }
 
-    .invoice-box table tr.top table td.title{
-      font-size:45px;
-      line-height:45px;
-      color:#333;
-    }
+        }
 
-    .invoice-box table tr.information table td{
-      padding-bottom:40px;
-    }
+        body{
+          padding:0px;
+          margin:0px;
 
-    .invoice-box table tr.heading td{
-      background:#eee;
-      border-bottom:1px solid #ddd;
-      font-weight:bold;
-    }
 
-    .invoice-box table tr.details td{
-      padding-bottom:20px;
-    }
+        }
+        .fm{
+          margin-top:10px;
+          padding-left:10px;
+        }
+        .ad{
+          margin-left:1000px;
+          clear:both;
+          border-radius:12px;
+        }
+        #prnt{
 
-    .invoice-box table tr.item td{
-      border-bottom:1px solid #eee;
-    }
+          margin-left:1020px;
+          border-radius:12px;
+        }
+        .nav{
+          border:1px solid black;
+          width:850px;
+          height:70px;
+          background-color:#52b74e;
+          margin-top:0px;
+          margin-left:200px;
+        }
+        .foot{
+          background-color:#52b74e;
+          border:1px solid black;
+          margin-top:79px;
+          width:850px;
+          height:70px;
+          margin-left:200px;
+          margin-top:100px;
 
-    .invoice-box table tr.item.last td{
-      border-bottom:none;
-    }
 
-    .invoice-box table tr.total td:nth-child(2){
-      border-top:2px solid #eee;
-      font-weight:bold;
-    }
+        }
+        h2{
+          color:red;
+        }
 
-    @media only screen and (max-width: 600px) {
-      .invoice-box table tr.top table td{
-        width:100%;
-        display:block;
-        text-align:center;
-      }
 
-      .invoice-box table tr.information table td{
-        width:100%;
-        display:block;
-        text-align:center;
-      }
-    }
-  </style>
-</head>
 
-<body>
-<div class="invoice-box">
-  <table cellpadding="0" cellspacing="0">
-    <tr class="top">
-      <td colspan="2">
-        <table>
-          <tr>
-            <td class="title">
-              <img src="images/photo.jpg" style="width:70%; max-width:200px;">
-            </td>
+        .mail{
 
-            <td>
-              Invoice #:<input type="number" id ="invoice"><br>
-              Created: <input type="date" id="createdate"><br>
-              Due:<input type="date" id="date">
-            </td>
-          </tr>
-        </table>
-      </td>
+          width:600px;
+          height:100px;
+          margin-left:300px;
+          border:1px solid black;
+          padding-top:10px;
+          padding-left:10px;
+          background-color:#dddddd;
+          border-radius:5px;
+
+        }
+        .rem{
+          border-radius:12px;
+        }
+      </style>
+    </head>
+  <body>
+
+  <div  class ="nav">
+    <h1 style="text-align:center; color:white"> INVOICE SYSTEM<h1></div>
+  <div class ="yarikul">
+    <h2>Yarikul Invoice System</h2>
+    <p>Address:Rajbagh Near Huriyat office <br><br> Mobile:9596469850<br><br>Pin:190024 </p>
+    <p>Email: info@yarikul.com</p>
+  </div>
+
+  <div class ="top">
+      Customer Name:<input type="text" id="user" name="name" size="15"><span>&nbsp; &nbsp; &nbsp; </span>
+      Contact:<input type="tex" name="Contact" id="num" maxlength="10" size="15" > <span>&nbsp; &nbsp; &nbsp; </span>
+      Address:<input type="text" name="address" id="add" size="15">
+
+  </div>
+  <table  class="mytable" id="myTable">
+
+
+    <tr>
+      <th align="left"> Items</th>
+      <th align="left"> Unit price</th>
+      <th align="left"> Quantity</th>
+      <th align="left"> Total Price </th>
+
     </tr>
-
-    <tr class="information">
-      <td colspan="2">
-        <table>
-          <tr>
-            <td>
-              Address:<br>
-              <textarea rows="4" cols="35" id="address"></textarea>
-            </td>
-
-            <td>
-              Yarikul corp.<br>
-              Imran Noor<br>
-              imranahanger@gmail.com
-            </td>
-          </tr>
-        </table>
-      </td>
-    </tr>
-
-    <tr class="heading">
+    <tr>
       <td>
-        Payment Method
-      </td>
 
-      <td>
-        <select id="Pmethod" class="form-control" >
-          <option value="">Select</option>
-          <option value="cheque">Cheque</option>
-          <option value="cash">Cash</option>
+
         </select>
       </td>
-    </tr>
-
-    <tr class="details">
       <td>
-        Amount
+        <input type="text" id="unitprice" disabled >
+      </td>
+      <td>
+        <input type="text"  class="qty">
+      </td>
+      <td>
+        <input type="text" id="total">
       </td>
 
+      <input class="ad" type="button" id="addrow"  value="Add More" >
       <td>
-        <input type="number" id="amount">
-      </td>
-    </tr>
 
-    <tr class="heading">
-      <td>
-        Item
+
       </td>
 
-      <td>
-        Price
-      </td>
-    </tr>
-
-    <tr class="item">
-      <td>
-        Website design
-      </td>
-
-      <td>
-        <input type="number" id="design">
-      </td>
-    </tr>
-
-    <tr class="item">
-      <td>
-        Hosting
-      </td>
-
-      <td>
-        <input type="number" id="hosting">
-      </td>
-    </tr>
-
-    <tr class="item last">
-      <td>
-        Domain name
-      </td>
-
-      <td>
-        <input type="number" id="domain">
-      </td>
-    </tr>
-
-    <tr class="total">
-      <td></td>
-
-      <td>
-        <button id="total" class="btn btn-default waves-effect waves-light btn-md">Total</button><label id="price"></label>
-      </td>
-    </tr>
-    <tr >
-      <td></td>
-
-      <td>
-        <button id="submit" class="btn btn-default waves-effect waves-light btn-md">Submit</button>
-        <button id="cancel" class="btn btn-default waves-effect waves-light btn-md">Cancel</button>
-      </td>
-    </tr>
+      <tfoot>
+      <th colspan="3">GRAND TOTAL</th>
+      <td><input type="text" id="grandtotal" align="left" disabled></td>
+      </tfoot>
 
   </table>
-  <a href="/invoices"><h3>Invoices</h3></a>
-</div>
+  <div>
+    <input id="prnt" type="button" onClick="window.print()" value="print!"/>
+  </div>
+  <div  class ="foot">
+    <h4 style="text-align:center; color:white">Developed By Sajid Khaki</h4>
 
-
-</body>
+  </div>
+  </body>
 </html>
